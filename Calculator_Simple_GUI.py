@@ -1,6 +1,7 @@
 #Calculator program with GUI
 
 import tkinter as tk
+import math
 
 class Calculator:
     def __init__(self, master):
@@ -17,7 +18,7 @@ class Calculator:
             '4', '5', '6', '-',
             '1', '2', '3', '*',
             '0', '.', '=', '/', 
-            'C'
+            'C', 'sqrt', 'expn'
             ]
         
         r = 1
@@ -47,6 +48,17 @@ class Calculator:
             # Clear display
             self.display.delete(0, tk.END)
 
+        elif key == 'sqrt':
+            # Calculate result
+            value = float(self.display.get())
+            result = math.sqrt(value)
+            self.display.delete(0, tk.END)
+            self.display.insert(0, str(result))
+
+        elif key == 'expn':
+            # Handle exponentiation
+            self.display.insert(tk.END, '**')
+
         else:
             # Add key to display
             self.display.insert(tk.END, key)
@@ -68,8 +80,16 @@ class Calculator:
             self.click('=')
 
         # Handle clear key
-        elif key == '\x08':
+        elif key in ['\x08', 'c']:
             self.click('C')
+
+        # Handle exponentiation key
+        elif key == "e":
+            self.click('**')
+
+        # Handle sqrt key
+        elif key == "s":
+            self.click('sqrt')
 
 # Create main window
 root = tk.Tk()
