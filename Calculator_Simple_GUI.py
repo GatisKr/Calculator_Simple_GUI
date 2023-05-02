@@ -9,16 +9,16 @@ class Calculator:
         master.title("Calculator")
 
         # Create entry widet to display input/output
-        self.display = tk.Entry(master, width=20, justify='right', font=('Console', 12))
+        self.display = tk.Entry(master, width=16, justify='right', font=('Console', 22))
         self.display.grid(row=0, column=0, columnspan=4, padx=5, pady=10)
 
         # Create buttons
         button_list = [
+            'C', 'sqrt', 'expn', '%',
             '7', '8', '9', '+', 
             '4', '5', '6', '-',
             '1', '2', '3', '*',
-            '0', '.', '=', '/', 
-            'C', 'sqrt', 'expn', '%'
+            '0', '.', '=', '/'
             ]
         
         r = 1
@@ -26,8 +26,8 @@ class Calculator:
         for b in button_list:
             # Define button properties
             cmd = lambda x=b: self.click(x)
-            tk.Button(master, text=b, width=4, height=1, font=('Console', 12), command=cmd)\
-              .grid(row=r, column=c, padx=5, pady=5)
+            tk.Button(master, text=b, width=6, height=2, font=('Console', 12), command=cmd)\
+              .grid(row=r, column=c, padx=1, pady=1)
             c += 1
             r += 0
             if c > 3:
