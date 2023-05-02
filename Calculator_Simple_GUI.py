@@ -1,7 +1,7 @@
 #Calculator program with GUI
 
 import tkinter as tk
-import math
+import math as mt
 
 class Calculator:
     def __init__(self, master):
@@ -51,7 +51,7 @@ class Calculator:
         elif key == 'sqrt':
             # Calculate result
             value = float(self.display.get())
-            result = math.sqrt(value)
+            result = mt.sqrt(value)
             self.display.delete(0, tk.END)
             self.display.insert(0, str(result))
 
@@ -79,8 +79,8 @@ class Calculator:
         elif key == '\r':
             self.click('=')
 
-        # Handle clear key
-        elif key in ['\x08', 'c']:
+        # Handle clear key ("u00.." for unicode, "x.." for Python. '\x08' - backspace, '\x1b' - escape)
+        elif key in ['\u0008', 'c', '\u001b']:
             self.click('C')
 
         # Handle exponentiation key
