@@ -18,7 +18,7 @@ class Calculator:
             '4', '5', '6', '-',
             '1', '2', '3', '*',
             '0', '.', '=', '/', 
-            'C', 'sqrt', 'expn'
+            'C', 'sqrt', 'expn', '%'
             ]
         
         r = 1
@@ -43,7 +43,7 @@ class Calculator:
             result = eval(self.display.get())
             self.display.delete(0, tk.END)
             self.display.insert(0, str(result))
-
+            
         elif key == 'C':
             # Clear display
             self.display.delete(0, tk.END)
@@ -58,6 +58,32 @@ class Calculator:
         elif key == 'expn':
             # Handle exponentiation
             self.display.insert(tk.END, '**')
+
+        elif key == '%':
+            # Calculate percentage
+            expression = self.display.get()
+            if '+' in expression:
+                parts = expression.split('+')
+                value = float(parts[0])
+                percent = float(parts[1])
+                result = value * (1 + percent/100)
+            elif '-' in expression:
+                parts = expression.split('-')
+                value = float(parts[0])
+                percent = float(parts[1])
+                result = value * (1 - percent/100)
+            elif '*' in expression:
+                parts = expression.split('*')
+                value = float(parts[0])
+                percent = float(parts[1])
+                result = value * percent/100
+            elif '/' in expression:
+                parts = expression.split('/')
+                value = float(parts[0])
+                percent = float(parts[1])
+                result = value / percent*100
+            self.display.delete(0, tk.END)
+            self.display.insert(0, str(result))
 
         else:
             # Add key to display
@@ -80,7 +106,7 @@ class Calculator:
             self.click('=')
 
         # Handle clear key ("u00.." for unicode, "x.." for Python. '\x08' - backspace, '\x1b' - escape)
-        elif key in ['\u0008', 'c', '\u001b']:
+        elif key in ['\u0008', '\u001b', 'c']:
             self.click('C')
 
         # Handle exponentiation key
