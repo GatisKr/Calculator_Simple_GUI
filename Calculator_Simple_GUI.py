@@ -9,7 +9,7 @@ class Calculator:
         master.title("Calculator")
 
         # Create entry widet to display input/output
-        self.display = tk.Entry(master, width=16, justify='right', font=('Console', 22))
+        self.display = tk.Entry(master, width=18, justify='right', font=('Console', 22))
         self.display.grid(row=0, column=0, columnspan=4, padx=5, pady=10)
 
         # Create buttons
@@ -26,7 +26,7 @@ class Calculator:
         for b in button_list:
             # Define button properties
             cmd = lambda x=b: self.click(x)
-            tk.Button(master, text=b, width=6, height=2, font=('Console', 12), command=cmd)\
+            tk.Button(master, text=b, width=7, height=2, font=('Console', 12), command=cmd)\
               .grid(row=r, column=c, padx=1, pady=1)
             c += 1
             r += 0
