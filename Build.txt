@@ -1,0 +1,2 @@
+cmd
+path:\\folder\ pyinstaller --onefile -w name.py
